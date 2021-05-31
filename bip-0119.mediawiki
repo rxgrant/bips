@@ -316,7 +316,7 @@ In principal, committing to the Sequences Hash (below) implicitly commits to the
 making this field strictly redundant. However, separately committing to this number makes it easier
 to construct StandardTemplateHashes from script.
 
-We treat the number of inputs as a `uint32_t` because signature checking code expects nIn to be an
+We treat the number of inputs as a `uint32_t` because signature checking code expects `CTxIn.prevout` to use an
 `unsigned int`, even though in principal a transaction can encode more than a `uint32_t`'s worth of
 inputs.
 
@@ -477,11 +477,11 @@ guaranteed to execute in separate transactions which reduces the risk of "half-s
 If the argument length is not exactly 32, CHECKTEMPLATEVERIFY treats it as a NOP.
 Many OP_NOP upgrades prefer to fail in such circumstances. In particular, for
 CHECKTEMPLATEVERIFY, making an invalid argument a NOP permits future soft-forks to upgrade the
-semantics or loosed restrictions around the value being previously pushed only.
+semantics or loosen restrictions around the value being previously pushed only.
 
 The standardness rules may lead an unscrupulous script developer to accidentally rely on the
 stricter standardness rules to be enforced during consensus. Should that developer submit a
-transaction directly to the network relying on standardness rejection, an standardness-invalid but
+transaction directly to the network relying on standardness rejection, a standardness-invalid but
 consensus-valid transaction may be caused, leading to a potential loss of funds.
 
 
